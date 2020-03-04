@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/swipers/swipers",
+    "pages/index/index",
+    "pages/settleAccount/settleAccount"
+  ],
+  "window": {
+    "defaultTitle": "",
+    "allowsBounceVertical": "NO"
+  }
+}

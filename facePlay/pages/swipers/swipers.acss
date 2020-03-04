@@ -1,0 +1,55 @@
+
+.swiperBox{
+  width:100%;
+  height:calc(100vh - 140rpx) !important;
+ }
+
+.swiperBox image{
+    min-width:100%;
+    height:100%;
+    background-size:cover !important;
+}
+
+.buttonBox{
+  box-sizing:border-box;
+  height:140rpx;
+  padding:30rpx 30rpx;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+
+.singleButton{
+  align-self: stretch;
+  flex:1;
+  line-height:80rpx;
+  font-size:34rpx;
+  border-radius:10rpx;
+  text-align:center;
+  background:#3FA9FF;
+  color:#ffffff;
+}
+
+.buttonItem{
+  align-self: stretch;
+  width:49%;
+  line-height:80rpx;
+  font-size:34rpx;
+  border-radius:10rpx;
+  text-align:center;
+  background:#3FA9FF;
+  color:#ffffff;
+}
+
+.setIcon{
+  position:fixed;
+  top:20rpx;
+  right:20rpx;
+  width:60rpx;
+  height:60rpx;
+}
+.setIcon image{
+  width:100%;
+  height:100%;
+}

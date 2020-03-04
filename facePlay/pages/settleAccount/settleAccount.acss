@@ -1,0 +1,68 @@
+
+page{
+  width:100%;
+  height:100%;
+  background:#ffffff;
+}
+.swiperBox{
+  height:400rpx;
+}
+
+.amountTips{
+  padding:50rpx 30rpx 0rpx;
+  font-size:30rpx;
+  font-weight:bold;
+  background:#ffffff;
+}
+
+.outInput{
+  background:#ffffff;
+  padding:30rpx;
+}
+
+.sideInput{
+  background:#F5F5F5;
+  padding:20rpx;
+  border-radius:10rpx;
+  display:flex;
+  align-items:center;
+  
+}
+
+.moneyIcon{
+  font-size:36rpx;
+}
+
+.sideInput .input{
+  flex:1;
+  background:#F5F5F5;
+  padding-left:20rpx;
+}
+
+.payTips{
+  color:#C0CADB;
+  font-size:30rpx;
+  text-align:center;
+  padding:30rpx;
+}
+
+.payMethodBox{
+  padding:30rpx;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+}
+
+.payItem{
+  text-align:center;
+}
+
+.payIcon{
+  width:120rpx;
+  height:120rpx;
+  margin-bottom:10rpx;
+}
+.payIcon image{
+  width:100%;
+  height:100%;
+}

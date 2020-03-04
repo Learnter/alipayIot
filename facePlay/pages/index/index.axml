@@ -1,0 +1,114 @@
+<view class="container">
+  <view class="page-body">
+    <scroll-view class="nav-left" scroll-y="{{true}}" >
+      <view class="nav-left-item {{index == categoryActive ? 'active' :''}}" onTap="categoryClickMain" wx:for="{{categoryList}}" wx:for-index="item.id" wx:for-item="item">
+          {{item.name}}
+      </view>
+    </scroll-view>
+    <scroll-view class="nav-right"  scroll-y={{true}}   scroll-top="{{scrollTop}}"  onScroll="scroll"  onScrollToLower="loadMore">
+      <view id="index===0?'first':''" class="selllistBox" a:for="{{subCategoryList}}" key="{{item.id}}">
+        <view class="selllistimg">
+          <image src="{{item.picture}}"></image></view>
+        <view class="selllistwz">
+          <view class="selllistTl">{{item.goods_name}}</view>
+          <view class="selllistms">{{item.goods_desc}}</view>
+          <view class="selllistdtai">
+            <text>月售{{item.sales_sum}}</text>
+            <!-- <text>赞{{item.click_count}}</text>-->
+          </view>
+          <view class="selllistgczBox">
+            <!-- <view class="selllistjg">30</view> -->
+            <view class="selllistjgs">¥ {{item.shop_price}}</view>
+            <view class="selllistcz"  onTap="chooseType"  data-goodId="{{item.goods_id}}" data-goodName="{{item.goods_name}}" data-goodPrice="{{item.shop_price}}">选规格</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="dibuButmBox">
+    <view class="dibuButmHe">
+      <view class="dibugwcBox" onTap="watchCards">
+        <image src="/image/hszx_44.png" mode="widthFix"></image>
+        <view class="dibugwctshi" a:if="{{cardSumNum}}">{{cardSumNum}}</view>
+      </view>
+      <view class="dibutgonBox">
+        <view class="dibutgonshu">¥ {{cardSumMoney}} 元</view>
+      </view>
+      <view class="dibutqujsuan" catchTap="toSum">去结算</view>
+    </view>
+  </view>
+  <!-- 购买弹窗 s -->
+  <view class="spdpopupBox {{spdpopup ? 'spdpopupBoxActive' :''}}">
+    <view class="spdpopupContBaba">
+      <view class="spdpopupCont {{spdpopup ? 'animationBox' :''}}">
+        <view class="spdpopuptl">{{activeGoodsName}}</view>
+          <block a:if="{{spec_data.length !== 0}}">
+            <view  a:for="{{spec_data}}" key="{{parentItem.id}}"  a:for-index="parentIndex" a:for-item="parentItem">
+              <view class="spuspcTl">{{parentItem.name}}：</view>
+              <view class="spuspcOneBox">
+                <view class="spuspcOne {{childItem.selected ? 'spuspcOneActive' : ''}}" a:for={{parentItem.items}}  a:for-item="childItem"  catchTap="selspec" data-parentIndex={{parentIndex}}  data-index={{index}}  data-childItem={{childItem}}>{{childItem.val}}</view>
+              </view>
+            </view>
+          </block>
+       
+        <view>
+          <view class="spuspcTl" a:if="{{garnish.length !== 0}}">附加：</view>
+          <view class="spuspcOneBox">
+            <view class="spuspcOne {{appendList.indexOf(item.id) !== -1 ? 'spuspcOneActive' : ''}}" a:for={{garnish}} :key="{{item.id}}" catchTap="selAppendList" data-appendItem="{{item}}">{{item.val}}</view>
+          </view>
+        </view>
+        <view class="spuspcTl">数量：</view>
+        <view class="spuspcbanr">
+          <stepper onChange="callBackFn" step="{{1}}" showNumber readOnly="{{false}}" value="{{active_good_num}}" min="{{1}}" max="{{100}}"/>
+        </view>
+        <view class="supbotmBox">
+          <view class="supbotmfx">
+            <text class="text_1">￥{{active_total_price}} 元</text>
+          </view>
+          <view class="supbotman" catchTap="addGoodsget">加入购物车</view>
+        </view>
+      </view>
+      <view class="guanbiBox {{spdpopup ? 'animationBox' :''}}" catchTap="closeSpecMask">关闭</view>
+    </view>
+  </view>
+  <!-- 购买弹窗 e -->
+  <!-- 购物车弹窗 s -->
+  <view class="shotroupBox {{gwcpopup ? 'shotroupBoxActive' :''}}">
+    <view class="shotroupyinc"></view>
+    <view class="shotroContHe {{gwcpopup ? 'animationCart' :''}}">
+      <view class="shotroCont">
+        <view class="shotrotle">欢迎点餐</view>
+        <view class="shotromsuBox uni-flex">
+          <text class="fx1">已选商品</text>
+          <view class="shotroczuo uni-flex" catchTap="clickClearCards">
+            <am-icon type="delete"/>
+            <text class="texe_1">清空购物车</text>
+          </view>
+        </view>
+        <scroll-view scroll-y="{{true}}" style="height:480rpx">
+          <view a:for="{{cardsList}}" key="{{item.id}}">
+            <swipe-action index="{{index}}" restore="{{swipeIndex === null || swipeIndex !== index}}" right="{{right}}" extra="{{item}}" onRightItemClick="onRightItemClick" onSwipeStart="onSwipeStart">
+              <list-item index="{{index}}" key="items-{{index}}" last="{{index === cardsList.length - 1}}">
+                <!-- {{item.content}} -->
+                <view class="uni-flex">
+                  <view class="cardlistimg">
+                    <image src="{{item.picture}}"></image></view>
+                  <view class="selllistwz">
+                    <view class="selllistTl">{{item.goods_name}}</view>
+                    <view class="gwcllistms">{{item.spec_name}}</view>
+                    <view class="selllistgczBox">
+                      <view class="selllistjgs">￥{{item.amount * item.goods_num}}</view>
+                      <stepper onChange="changeCardNumber"  indexAttr="{{index}} " dataAttr="{{item}}"  step="{{1}}" showNumber readOnly="{{true}}" value="{{item.goods_num}}" min="{{1}}" max="{{100}}"/>
+                    </view>
+                  </view>
+                </view>
+                </view>
+              </list-item>
+            </swipe-action>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <!-- 购物车弹窗 e -->
+</view>

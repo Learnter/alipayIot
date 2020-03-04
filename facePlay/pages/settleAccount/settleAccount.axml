@@ -1,0 +1,31 @@
+<view class="container">
+  <swiper indicator-dots="{{true}}" autoplay="{{true}}"  circular="{{true}}" class="swiperBox" >
+    <block a:for="{{list}}">
+      <swiper-item>
+        <image src="{{item.banner}}"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="amountTips">请输入付款金额</view>
+  <view class="outInput">
+    <view class="sideInput">
+      <text class="moneyIcon">¥</text>
+      <input class="input" type="number" value="{{amount}}" placeholder="0.00" onBlur="inputOnBlur"/>
+    </view>
+  </view> 
+  <view class="payTips">请选择支付方式</view>
+  <view class="payMethodBox">
+      <view class="payItem"  catchTap="codePay">
+        <view class="payIcon">
+          <image src="/image/face_4.png"/>
+        </view>
+        <text>扫码支付</text>
+      </view>
+      <view class="payItem" catchTap="facePay">
+        <view class="payIcon">
+          <image src="/image/face_5.png"/>
+        </view>
+        <text>扫脸支付</text>
+      </view>
+  </view>
+</view>

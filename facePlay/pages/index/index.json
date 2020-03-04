@@ -1,0 +1,9 @@
+ {
+   "usingComponents":{
+    "stepper": "mini-antui/es/stepper/index",
+    "am-icon": "mini-antui/es/am-icon/index",
+    "list": "mini-antui/es/list/index",
+    "list-item": "mini-antui/es/list/list-item/index",
+    "swipe-action": "mini-antui/es/swipe-action/index"
+  }
+ }

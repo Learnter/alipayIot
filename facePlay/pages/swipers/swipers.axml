@@ -1,0 +1,26 @@
+<view class="container">
+  <swiper indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}" class="swiperBox" >
+    <block a:for="{{list}}">
+      <swiper-item>
+        <view style="width:100%;height:100%">
+            <image src="{{item.banner}}"/>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="buttonBox">
+    <block a:if="{{startType === 1}}">
+      <view class="singleButton" catchTap="settleSum">开始结算</view>
+    </block>
+    <block a:elif="{{startType === 2}}">
+      <view class="singleButton" catchTap="chooseShop">选购商品</view>
+    </block>
+    <block a:elif="{{startType === 3}}">
+       <view class="buttonItem" catchTap="settleSum">开始结算</view>
+       <view class="buttonItem" catchTap="chooseShop">选购商品</view>
+    </block>
+  </view>
+  <!-- <view class="setIcon" catchTap="navSetup">
+    <image src="/image/face_6.png"></image>
+  </view> -->
+</view>
