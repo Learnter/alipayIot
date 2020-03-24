@@ -157,6 +157,7 @@ Page({
       'active_total_price': active_total_price,
       appendList: appendList
     })
+    console.log(this.data.appendList);
   },
   callBackFn(value) { //选择数量
     let { active_init_price, appendList, garnish } = this.data;
@@ -311,7 +312,7 @@ Page({
           bizNo: res.data.data.order_sn,
           totalAmount: res.data.data.order_amount.toString(),
           success: (r) => {
-            $http.POST($api.orderPay.alipy, { 'bar_code': r.barCode, 'order_sn': r.bizNo }).then((res) => { //提交刷脸支付二维码及订单单号
+            $http.POST($api.orderPay.alipy, { 'bar_code': r.barCode, 'order_sn': r.bizNo ,type:"1"}).then((res) => { //提交刷脸支付二维码及订单单号
               if (res.data.code === 200) {
                 this.setData({ //清空数据
                   gwcpopup: false,

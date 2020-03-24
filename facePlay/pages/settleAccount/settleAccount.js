@@ -57,8 +57,9 @@ Page({
           bizNo: res.data.data.order_sn,
           totalAmount: res.data.data.order_amount.toString(),
           success: (r) => {
-            $http.POST($api.orderPay.alipy, { 'bar_code': r.barCode, 'order_sn': r.bizNo }).then((res) => { //提交刷脸支付二维码及订单单号
+            $http.POST($api.orderPay.alipy, { 'bar_code': r.barCode, 'order_sn': r.bizNo ,type:"1"}).then((res) => { //提交刷脸支付二维码及订单单号
               if (res.data.code === 200) {
+                my.showToast({type: 'success',content: '支付成功!'});
                 this.setData({ //清空数据
                   amount: ''
                 })
@@ -90,14 +91,16 @@ Page({
     if (!amount) return my.showToast({ type: 'exception', content: '请先输入付款金额' });
     $http.POST($api.swiper.amountPay, { price: amount }).then((res) => {
       if (res.data.code === 200) {
+        my.showToast({type: 'none',content: '请出示付款码'});
         my.ix.startApp({
           appName: 'cashier',
           bizNo: res.data.data.order_sn,
           totalAmount: res.data.data.order_amount.toString(),
           showScanPayResult: true,
           success: (r) => {
-            $http.POST($api.orderPay.alipy, { 'bar_code': r.barCode, 'order_sn': r.bizNo }).then((res) => { //提交刷脸支付二维码及订单单号
+            $http.POST($api.orderPay.alipy, { 'bar_code': r.barCode, 'order_sn': r.bizNo ,type:"1" }).then((res) => { //提交刷脸支付二维码及订单单号
               if (res.data.code === 200) {
+                my.showToast({type: 'success',content: '支付成功!'});
                 this.setData({ //清空数据
                   amount: ''
                 })

@@ -1,7 +1,7 @@
 <view class="container">
   <view class="page-body">
     <scroll-view class="nav-left" scroll-y="{{true}}" >
-      <view class="nav-left-item {{index == categoryActive ? 'active' :''}}" onTap="categoryClickMain" wx:for="{{categoryList}}" wx:for-index="item.id" wx:for-item="item">
+      <view class="nav-left-item {{index == categoryActive ? 'active' :''}}" onTap="categoryClickMain" a:for="{{categoryList}}" data-item="{{item}}" data-index="{{index}}">
           {{item.name}}
       </view>
     </scroll-view>
@@ -54,7 +54,7 @@
         <view>
           <view class="spuspcTl" a:if="{{garnish.length !== 0}}">附加：</view>
           <view class="spuspcOneBox">
-            <view class="spuspcOne {{appendList.indexOf(item.id) !== -1 ? 'spuspcOneActive' : ''}}" a:for={{garnish}} :key="{{item.id}}" catchTap="selAppendList" data-appendItem="{{item}}">{{item.val}}</view>
+            <view class="spuspcOne" class="{{(appendList.indexOf(item.id) !== -1) ? 'spuspcOneActive' : ''}}" a:for={{garnish}} :key="{{item.id}}" catchTap="selAppendList" data-appendItem="{{item}}">{{item.val,appendList.indexOf(item.id) !== -1}}</view>
           </view>
         </view>
         <view class="spuspcTl">数量：</view>

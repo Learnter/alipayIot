@@ -1,6 +1,6 @@
 
-  let BASEURL = 'https://facepayapi.zguan.cn/v1/customer/';
-  // let BASEURL = 'https://api.huiqinsoft.cn/v1/customer/';
+  // let BASEURL = 'https://facepayapi.zguan.cn/v1/customer/';//正式服
+  let BASEURL = 'https://api.2020demo.jiafuw.com/v1/customer/'; //测试服
   const POST = function(Url,Data,Token) {
     //获取唯一设备号,并请求后端
     let {data} = my.getStorageSync({ key:'equipment_SN'});
